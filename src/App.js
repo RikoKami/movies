@@ -1,16 +1,6 @@
 import React from 'react';
-import Header from './components/header';
-import Search from './components/search';
-import List from './components/list';
+import Routes from './routes';
 
-export default function App() {
-  return (
-    <main>
-      <Header title="Movies"/>
-      <div className="container">
-        <Search/>
-        <List/>
-      </div>
-    </main>
-  )
-}
+const App = () => <Routes/>;
+
+export default App;

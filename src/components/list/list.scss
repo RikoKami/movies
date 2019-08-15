@@ -1,0 +1,143 @@
+@import "../../styles/variables.scss";
+
+.list {
+  position: relative;
+  a {
+    display: block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    &:active {
+      color: nth($blue, 1);
+    }
+    .card {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      @media only screen and (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+      picture {
+        display: block;
+        img {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+      }
+      figcaption {
+        position: relative;
+        background: nth($neutro, 5);
+        .cardHeader {
+          display: block;
+          padding: 0px 15px;
+          background: nth($blue, 1);
+          h3 {
+            color: nth($blue, 2);
+            font-family: "Lato";
+            font-weight: 400;
+            font-size: 27px;
+            margin: 0;
+            padding-top: 20px;
+            padding-bottom: 5px;
+            padding-left: 90px;
+          }
+        }
+        .date {
+          padding-top: 5px;
+          padding-left: 110px;
+          color: #c2c2c2;
+        }
+        .porcentagem {
+          position: absolute;
+          top: 18px;
+          left: 10px;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          display: block;
+          background: nth($blue, 1);
+          &:before {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: 5px;
+            width: 63px;
+            height: 63px;
+            border: 4px solid #02d9db;
+            border-radius: 100%;
+          }
+          span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: nth($blue, 2);
+            font-family: "Lato";
+            font-size: 23px;
+          }
+        }
+        .desc {
+          padding: 20px;
+        }
+        .categorias {
+          display: block;
+          padding-left: 20px;
+          li {
+            background: nth($neutro, 1);
+            display: inline-block;
+            list-style: none;
+            padding: 5px 10px;
+            margin: 0px 5px;
+            border-radius: 20px;
+            border: 1px solid nth($blue, 1);
+            &:first-child {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .pagination {
+    display: block;
+    text-align: center;
+    margin-top: 90px;
+    li {
+      list-style: none;
+      display: inline-block;
+      a {
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 0px 5px;
+        border-radius: 50%;
+        position: relative;
+        color: nth($blue, 1);
+      }
+      &.active {
+        a {
+          position: relative;
+          text-decoration: none;
+          padding: 10px 15px;
+          background: nth($blue, 1);
+          margin: 0px 5px;
+          color: nth($blue, 2);
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          border: 6px solid nth($blue, 1);
+          &:before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            width: 100%;
+            left: -3px;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid nth($blue, 2);
+          }
+        }
+      }
+    }
+  }
+}
