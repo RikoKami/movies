@@ -1,0 +1,39 @@
+// Variáveis
+@import "./variables.scss";
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Abel|Lato&display=swap");
+
+* {
+  min-height: 0;
+  min-width: 0;
+  font-family: "Lato", "Abel", sans-serif;
+  box-sizing: border-box;
+}
+
+::selection {
+  background: nth($blue, 1);
+  text-shadow: none;
+  color: nth($neutro, 1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Lato", "Abel", sans-serif;
+  .container {
+    padding: 0 15px;
+    margin: 0 auto;
+    @media only screen and (min-width: 768px) {
+      width: 750px;
+    }
+    @media only screen and (min-width: 992px) {
+      width: 970px;
+    }
+    @media only screen and (min-width: 1200px) {
+      width: 1170px;
+    }
+  }
+}
