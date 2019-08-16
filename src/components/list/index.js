@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
 import './list.scss';
 
-// import axios from 'axios';
 import MovieService from '../../services/MovieService';
 
 export default function List(){
   const [movie,setMovie] = useState([]);
-
+  
   useEffect(() =>{
     async function getListMovie() {
       const {
@@ -16,10 +14,8 @@ export default function List(){
       setMovie(results);
       console.log(results);
     }
-      
     getListMovie();
   }, []);
-
   return(
     <section className="list">
       {movie.map(item => (
@@ -33,7 +29,7 @@ export default function List(){
                 <h3>{item.title}</h3>
               </div>
               <div className="porcentagem">
-                <span> {item.vote_average}  %</span>
+                <span>  {item.vote_average}</span>
                 </div>
               <div className="date">{item.release_date}</div>
               <p className="desc">{item.overview}</p>
