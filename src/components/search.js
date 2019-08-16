@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { SearchStyled } from '../styles';
 import MovieService from '../services/MovieService';
 
-export default function Search(){
+export default function Search(props){
   const [search,setSearch] = useState('');
 
   async function handleChange(e) {
-    const resp = await MovieService.getSearchMovie(search);
     setSearch(e.target.value);
-    console.log(search); 
-    console.log(resp); 
-    if(search == ''){
-      // Setar todos os filmes aqui;
+    if(e.target.value == ''){
+      props.onChange([]);
+      return;
     }
+    const resp = await MovieService.getSearchMovie(e.target.value);
+    props.onChange(resp.data.results)
   }
   return (
     <SearchStyled className="search">

@@ -1,0 +1,31 @@
+@import "../../styles/variables.scss";
+
+main {
+  .movie {
+    .cardHeader {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      margin-top: 20px;
+      background: #eaeaea;
+      padding: 20px;
+      h3 {
+        margin: 0;
+        color: nth($blue, 1);
+        font-family: "Lato";
+        font-weight: 400;
+        font-size: 20px;
+      }
+    }
+    figure {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      margin: 0;
+      padding: 10px;
+      picture {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
