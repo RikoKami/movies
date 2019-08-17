@@ -7,12 +7,14 @@ export default function Search(props){
 
   async function handleChange(e) {
     setSearch(e.target.value);
-    if(e.target.value == ''){
+    if(e.target.value === ''){
       props.onChange([]);
       return;
     }
     const resp = await MovieService.getSearchMovie(e.target.value);
     props.onChange(resp.data.results)
+    // console.log(resp.data.total_results);
+    // console.log(resp.data.results[5]);
   }
   return (
     <SearchStyled className="search">

@@ -11,6 +11,7 @@ export default function List(props){
   const [search,setSearch] = useState([]);
   const [genre,setGenre] = useState([]);
   const [page, setPage] = useState(1);
+  const [searchPage, setSearchPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const pageNumbers = [];
 
@@ -30,7 +31,7 @@ export default function List(props){
         const resp = await MovieService.getListMovies(page); 
         setMovie(resp.data.results);
         setSearch(resp.data.results);
-        setTotalPage(resp.data.total_pages);
+        setTotalPage(resp.data.total_pages);      
       } catch (error) {
         
       }
@@ -40,17 +41,22 @@ export default function List(props){
   }, [page]);
 
   useEffect(()=>{
-    if(props.search.length == 0) {
-      // console.log(movie);
-      
+    if(props.search.length === 0) {
       setSearch(movie);
       return;
-    } 
-    // console.log(props.search);
-    setSearch(props.search);
-    
-  }, [props.search]);
+    }
+    const array = props.search;
+    const data = array.slice((searchPage-1)*5, searchPage * 5);
+    setSearch(data);
 
+    console.log(props.search.length); // 18
+    
+  }, [props.search, searchPage]);
+
+  // for (let i = page; i < page + 5; i++) {
+  //   if (i <= totalPage) pageNumbers.push(i);
+  // }
+  
   for (let i = page; i < page + 5; i++) {
     if (i <= totalPage) pageNumbers.push(i);
   }
@@ -81,7 +87,7 @@ export default function List(props){
               <ul className="categorias">
               {item.genre_ids.map(e => (
                 <li key={e}>
-                  {genre.filter(filter => filter.id == e)[0].name}
+                  {genre.filter(filter => filter.id === e)[0].name}
                 </li>
               ))}
               </ul>
@@ -91,21 +97,35 @@ export default function List(props){
       ))}
       
       <ul className="pagination">
-        {page != 1 &&
-          <>
-          <li><a onClick={() => {setPage(1)}}>1</a></li>
-          <span>...</span>
-          </>
-        }
-        {pageNumbers.sort().map(item => (
-          <li className={item === page ? "active" : ''} key={item}><a onClick={() => {setPage(item)}}>{item}</a></li>
-          ))}
-        {page != totalPage && 
-          <>
+        {props.search.length === 0 ?
+        <>
+          {page !== 1 &&
+            <>
+            <li><a onClick={() => {setPage(1)}}>1</a></li>
             <span>...</span>
-            <li><a onClick={() => {setPage(totalPage)}}>{totalPage}</a></li>
-          </>
-        }
+            </>
+          }
+          {pageNumbers.sort().map(item => (
+            <li className={item === page ? "active" : ''} key={item}>
+              <a onClick={() => {setPage(item)}}>{item}</a>
+            </li>
+          ))}
+          {page !== totalPage && 
+            <>
+              <span>...</span>
+              <li><a onClick={() => {setPage(totalPage)}}>{totalPage}</a></li>
+            </>
+          }
+        </>
+        : 
+        <>
+          {pageNumbers.sort().map(item => (
+            <li className={item === searchPage ? "active" : ''} key={item}>
+              <a onClick={() => {setSearchPage(item)}}>{item}</a>
+            </li>
+          ))}
+        </>
+      }
       </ul>
     </section>
   )

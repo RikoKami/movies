@@ -2,7 +2,7 @@ import api from './api';
 
 export default {
   /**
-   * Listagem de todos os filmes
+   * Listagem de todos os generos
    */
   getGenres(){
   const config = {
@@ -42,6 +42,10 @@ export default {
     return api.get(`/movie/${movie_id}`, config);
   },
 
+  /**
+   * Busca de filmes
+   * @param {serach} search 
+   */
   getSearchMovie(search){
     const config = {
       params : {
@@ -49,7 +53,7 @@ export default {
         "language" : "pt-BR",
         'page': '1',
         "include_adult": "false",
-        "query": search
+        "query": search,
       }
     }
     return api.get(`/search/movie`, config);
