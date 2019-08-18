@@ -19,7 +19,7 @@ export default function Movie({ match }){
         const resp = await MovieService.getGenres();
         setGenre(resp.data.genres);
       } catch (error) {
-        console.log('Api afk.');
+        console.log('Não foi possivel consultar a API.');
       }
     }
     getGenrer();
@@ -29,7 +29,7 @@ export default function Movie({ match }){
         const resp = await MovieService.getLang();
         setLang(resp.data);   
       } catch (error) {
-        console.log('Api afk.');
+        console.log('Não foi possivel consultar a API.');
       }
     }
     getLang();
@@ -39,7 +39,7 @@ export default function Movie({ match }){
         const resp = await MovieService.getVideo(match.params.id);
         setVideo( resp.data.results.filter(result => { return result.type === "Trailer" }) );        
       } catch (error) {
-        console.log('Api afk.');
+        console.log('Não foi possivel consultar a API.');
       }
     }
     getVideo();

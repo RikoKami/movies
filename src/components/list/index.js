@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import './list.scss';
 
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 import MovieService from '../../services/MovieService';
 
+import './list.scss';
 import NoImage from '../../assets/img/noimage.png';
-import moment from 'moment';
 
-// api afk!
+// Consulta de API indisponível:
 // import {mock} from '../../utils/mock';
 
 export default function List(props){
@@ -25,7 +25,7 @@ export default function List(props){
         const resp = await MovieService.getGenres();
         setGenre(resp.data.genres);
       } catch (error) {
-        
+        console.log('Não foi possivel consultar a API.');
       }
     }
     getGenrer();
@@ -37,7 +37,7 @@ export default function List(props){
         setSearch(resp.data.results);
         setTotalPage(resp.data.total_pages);
       } catch (error) {
-        
+        console.log('Não foi possivel consultar a API.');
       }
     }
     getListMovie(page);
@@ -51,9 +51,7 @@ export default function List(props){
     }
     const array = props.search;
     const data = array.slice((searchPage-1)*5, searchPage * 5);
-    setSearch(data);
-    // console.log(props.search.length); // 18
-    
+    setSearch(data);    
   }, [props.search, searchPage]);
 
   for (let i = page; i < page + 5; i++) {

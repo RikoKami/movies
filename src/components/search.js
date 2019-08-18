@@ -13,8 +13,6 @@ export default function Search(props){
     }
     const resp = await MovieService.getSearchMovie(e.target.value);
     props.onChange(resp.data.results)
-    // console.log(resp.data.total_results);
-    // console.log(resp.data.results[5]);
   }
   return (
     <SearchStyled className="search">
