@@ -17,7 +17,7 @@ export default function Movie({ match }){
     async function getGenrer() {
       try {
         const resp = await MovieService.getGenres();
-        setGenre(resp.data.genres);        
+        setGenre(resp.data.genres);
       } catch (error) {
         console.log('Api afk.');
       }
@@ -27,7 +27,7 @@ export default function Movie({ match }){
     async function getLang(){
       try {
         const resp = await MovieService.getLang();
-        setLang(resp.data);
+        setLang(resp.data);   
       } catch (error) {
         console.log('Api afk.');
       }
@@ -37,18 +37,16 @@ export default function Movie({ match }){
     async function getVideo(){
       try {
         const resp = await MovieService.getVideo(match.params.id);
-        // console.log( resp.data.results.filter(result => { return result.type === "Trailer" }) );
-        setVideo( resp.data.results.filter(result => { return result.type === "Trailler" }) );
-        
+        setVideo( resp.data.results.filter(result => { return result.type === "Trailer" }) );        
       } catch (error) {
-        
+        console.log('Api afk.');
       }
     }
     getVideo();
 
     async function getMovies(){
       const resp = await MovieService.getMovies(match.params.id);
-      setMovie(resp.data);
+      setMovie(resp.data);     
     }
     getMovies();
   }, [match.params.id]);
@@ -75,13 +73,7 @@ export default function Movie({ match }){
                     </div>
                     <div>
                       <h4>Idioma</h4>
-                      <p>
-                      {/* {movie.lang.map(idioma => (
-                        <li key={idioma}>
-                          {idioma.english_name}
-                        </li>
-                      ))} */}
-                      </p>
+                      {movie.original_language}
                     </div>
                     <div>
                       <h4>Duração</h4>
@@ -121,8 +113,10 @@ export default function Movie({ match }){
                 }
               </picture>
             </figure>
-
-            {/* <iframe src={`https://www.youtube.com/embed/${movie.video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
+            
+            {video.map(vid => (
+              <iframe key={vid.id} src={`https://www.youtube.com/embed/${vid.key}`} title={vid.name} allowFullScreen></iframe>
+            ))}
           </section>
         </div>
       }
