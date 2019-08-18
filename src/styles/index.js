@@ -5,12 +5,18 @@ export const HeaderStyled = styled.header`
   width: 100%;
   text-align:center;
   background: #116193;
-  h1{
-    padding: 10px 0;
-    margin: 0;
-    color: #02d9db;
-    font-family: 'Abel';
-    font-weight: 400;
+  a{
+    text-decoration: none;
+    h1{
+      padding: 10px 0;
+      margin: 0;
+      color: #02d9db;
+      font-family: 'Abel';
+      font-weight: 400;
+      &:hover{
+        color: #fff;
+      }
+    }
   }
 `;
 

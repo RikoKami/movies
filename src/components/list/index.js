@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 import MovieService from '../../services/MovieService';
 
 import NoImage from '../../assets/img/noimage.png';
+import moment from 'moment';
+
+// api afk!
+// import {mock} from '../../utils/mock';
 
 export default function List(props){
   const [movie,setMovie] = useState([]);
@@ -31,7 +35,7 @@ export default function List(props){
         const resp = await MovieService.getListMovies(page); 
         setMovie(resp.data.results);
         setSearch(resp.data.results);
-        setTotalPage(resp.data.total_pages);      
+        setTotalPage(resp.data.total_pages);
       } catch (error) {
         
       }
@@ -48,15 +52,10 @@ export default function List(props){
     const array = props.search;
     const data = array.slice((searchPage-1)*5, searchPage * 5);
     setSearch(data);
-
-    console.log(props.search.length); // 18
+    // console.log(props.search.length); // 18
     
   }, [props.search, searchPage]);
 
-  // for (let i = page; i < page + 5; i++) {
-  //   if (i <= totalPage) pageNumbers.push(i);
-  // }
-  
   for (let i = page; i < page + 5; i++) {
     if (i <= totalPage) pageNumbers.push(i);
   }
@@ -82,7 +81,7 @@ export default function List(props){
               <div className="porcentagem">
                 <span>{item.vote_average * 10}%</span>
                 </div>
-              <div className="date">{item.release_date}</div>
+              <div className="date">{moment(movie.release_date).format('L')}</div>
               <p className="desc">{item.overview}</p>
               <ul className="categorias">
               {item.genre_ids.map(e => (
