@@ -82,7 +82,7 @@ export default function List(props){
                 <span>{item.vote_average * 10}%</span>
                 </div>
               <div className="date">{moment(movie.release_date).format('L')}</div>
-              <p className="desc">{item.overview}</p>
+              <p className="desc">{(item.overview === '' ? 'Não há sinopse cadastrada.' : item.overview)}</p>
               <ul className="categorias">
               {item.genre_ids.map(e => (
                 <li key={e}>
